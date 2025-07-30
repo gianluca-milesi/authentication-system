@@ -1,11 +1,11 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const app = express();
-dotenv.config();
+const express = require("express");
+const authRouter = require("./routers/authRouter.js");
 const PORT = process.env.PORT || 3001;
 
+const app = express();
 app.use(express.static("public"));
 app.use(express.json());
+app.use("/api", authRouter);
 
 app.get("/", (req, res) => {
     res.json("Root");
